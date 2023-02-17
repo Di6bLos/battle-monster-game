@@ -14,21 +14,21 @@
 
     <div class="health-meters">
       <div class="health-gauge">
-        <div id="player-hp" class="health-bar">{{ playerHealth }}</div>
+        <div id="player-hp" class="health-bar" :style="{'width': playerHealth + '%'}">{{ playerHealth }}</div>
       </div>
-      <div class="health-gauge">
-        <div id="monster-hp" class="health-bar">{{ monsterHealth }}</div>
+      <div id="monster-hp" class="health-gauge">
+        <div class="health-bar" :style="{'width': monsterHealth + '%'}">{{ monsterHealth }}</div>
       </div>
     </div>
 
     <div class="game-controls">
-      <div class="btn-col">
+      <div class="btn-row">
         <button class="btn" @click="playerAtk">Attack</button>
-        <button class="btn">Special</button>
+        <button class="btn" @click="specialAtk">Special</button>
       </div>
-      <div class="btn-col">
-        <button class="btn">Heal</button>
-        <button class="btn">Block</button>
+      <div class="btn-row">
+        <button class="btn" @click="playerHeal">Heal</button>
+        <button class="btn" @click="playerBlock">Block</button>
       </div>
     </div>
   </section>
@@ -41,6 +41,7 @@ export default {
       greeting: "Monster Battle!",
       playerHealth: 100,
       monsterHealth: 100,
+      attackMove: false,
     };
   },
   methods: {
@@ -50,8 +51,35 @@ export default {
     playerAtk() {
       const attackPoints = this.getRandomRange(5, 12);
       this.monsterHealth -= attackPoints;
-    }
-  }
+
+      this.monsterAtk();
+    },
+    specialAtk() {
+      const attackPoints = this.getRandomRange(15, 23);
+      this.monsterHealth -= attackPoints;
+      this.monsterAtk();
+
+    },
+    playerHeal() {
+      const healthPoints = this.getRandomRange(15, 19);
+      this.playerHealth += healthPoints;
+      this.monsterAtk();
+    },
+    playerBlock() {
+      const blockedPoints = this.getRandomRange(8, 15);
+
+      this.monsterAtk(blockedPoints);
+    },
+    monsterAtk(blocked) {
+      setTimeout(() => {
+        const attackPoints = this.getRandomRange(8, 15);
+        blocked
+          ? (this.playerHealth -= Math.abs(attackPoints - blocked))
+          : (this.playerHealth -= attackPoints);
+          console.log(attackPoints, blocked);
+      }, 1000);
+    },
+  },
 };
 </script>
 

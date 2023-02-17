@@ -32,23 +32,29 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
-.health-meters {
+.health-meters,
+.health-gauge {
   display: flex;
 }
-.health-gauge {
+.health-gauge,
+.health-bar {
   width: 100%;
+  text-align: center;
 }
 .health-bar {
   background-color: green;
-  text-align: center;
+}
+#monster-hp {
+  justify-content: flex-end;
 }
 .game-controls {
   display: flex;
-  justify-content: space-around;
-}
-.btn-col {
-  display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+.btn-row {
+  display: flex;
+  justify-content: space-around;
 }
 .btn {
   padding: 1rem 2rem;
