@@ -61,3 +61,25 @@ h1 {
   color: white;
   background-color: brown;
 }
+.disabled {
+  background-color: grey;
+}
+.char-img {
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+}
+.attacking {
+  position: relative;
+  left: 1rem;
+}
+.attacked {
+  position: relative;
+  right: 1rem;
+}
+
+.action-icon {
+  width: 40px;
+  height: 40px;
+  background-color: yellow;
+}
