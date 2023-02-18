@@ -5,12 +5,10 @@
       <button class="btn" @click="$emit('splAtk')">Special</button>
     </div>
     <div class="btn-row">
-      <button
-        class="btn"
-        :disabled="!hasPotion"
-        @click="$emit('usePotion')">Heal</button>
-      <button class="btn"
-      @click="$emit('isBlocking')">Block</button>
+      <button class="btn" :disabled="!hasPotion" @click="$emit('usePotion')">
+        Heal
+      </button>
+      <button class="btn" @click="$emit('isBlocking')">Block</button>
     </div>
   </div>
 </template>

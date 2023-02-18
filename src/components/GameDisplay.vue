@@ -3,15 +3,15 @@
     <div class="battle-display">
       <div class="player-card card">
         <h2>Player</h2>
-        <div class="char-img" :class="{ attacking: playerAttacking }">
-          <div v-if="playerAttacking" class="action-icon"></div>
+        <div class="char-img">
+          <!-- <div v-if="playerAttacking" class="action-icon"></div> -->
           <img src="#" alt="player-image" />
         </div>
       </div>
       <div class="monster-card card">
         <h2>Monster</h2>
-        <div class="char-img" :class="{ attacked: monsterAttacking }">
-          <img src="#" alt="player-image" />
+        <div class="char-img">
+          <img src="#" alt="monster-image" />
         </div>
       </div>
     </div>
@@ -21,13 +21,13 @@
         <div
           id="player-hp"
           class="health-bar"
-          :style="{ width: playerHealth + '%' }"
+          :style="playerHpStyle"
         >
           {{ playerHealth }}
         </div>
       </div>
       <div id="monster-hp" class="health-gauge">
-        <div class="health-bar" :style="{ width: monsterHealth + '%' }">
+        <div class="health-bar" :style="monsterHpStyle">
           {{ monsterHealth }}
         </div>
       </div>
@@ -38,5 +38,14 @@
 <script>
 export default {
   props: ["playerHealth", "monsterHealth"],
+  computed: {
+    playerHpStyle() {
+        return { width: this.playerHealth + '%' };
+    },
+    monsterHpStyle() {
+        return {width: this.monsterHealth + '%'};
+    },
+
+  }
 };
 </script>

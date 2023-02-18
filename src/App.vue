@@ -4,7 +4,11 @@
   :player-health="playerHealth"
   :monster-health="monsterHealth"
   ></game-display>
-  <game-controls
+  <restart-screen v-if="winner"
+  :winner="winner"
+  @restart="restartGame"
+  ></restart-screen>
+  <game-controls v-else
   :has-potion="healthPotion"
   @reg-atk="playerAtk"
   @spl-atk="specialAtk"
@@ -21,9 +25,31 @@ export default {
       monsterHealth: 100,
       roundCounter: 0,
       healthPotion: true,
+      winner: null,
     };
   },
+  watch: {
+    // Once the player or monsters health hits 0 or less, declares the winner
+    playerHealth(value) {
+      if(value <= 0) {
+        this.winner = "Monster Won";
+      }
+    },
+    monsterHealth(value) {
+      if(value <= 0) {
+        this.winner = "Player Won";
+      }
+    }
+  },
   methods: {
+    // Reset data and restarts game
+    restartGame(){
+      this.playerHealth = 100,
+      this.monsterHealth = 100,
+      this.roundCounter = 0,
+      this.healthPotion = true,
+      this.winner = null
+    },
     // Generates a random number between the given parameters
     getRandomRange(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
@@ -60,6 +86,7 @@ export default {
 
       this.monsterAtk(blockedPoints);
     },
+    // The monster attacks the plater
     monsterAtk(blocked) {
       setTimeout(() => {
         const attackPoints = this.getRandomRange(8, 15);
