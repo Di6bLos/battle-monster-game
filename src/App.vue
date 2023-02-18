@@ -98,27 +98,30 @@ export default {
     },
     // The monster attacks the plater
     monsterAtk(blocked) {
-      setTimeout(() => {
-        const attackPoints = this.getRandomRange(8, 15);
-        blocked
-          ? (this.playerHealth -= Math.abs(attackPoints - blocked))
-          : (this.playerHealth -= attackPoints);
-        this.monsterAtkAnimation();
-      }, 1000);
-      this.roundCounter++;
+      // Makes sure the monster wont attack if its already dead
+      if (this.monsterHealth > 0) {
+        setTimeout(() => {
+          const attackPoints = this.getRandomRange(8, 15);
+          blocked
+            ? (this.playerHealth -= Math.abs(attackPoints - blocked))
+            : (this.playerHealth -= attackPoints);
+          this.monsterAtkAnimation();
+        }, 1000);
+        this.roundCounter++;
+      }
     },
     playerAtkAnimation() {
       this.playerAttacked = true;
-      setTimeout(()=> {
+      setTimeout(() => {
         this.playerAttacked = false;
       }, 300);
     },
     monsterAtkAnimation() {
       this.monsterAttacked = true;
-      setTimeout(()=> {
+      setTimeout(() => {
         this.monsterAttacked = false;
       }, 300);
-    }
+    },
   },
 };
 </script>
