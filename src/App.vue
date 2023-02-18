@@ -1,19 +1,23 @@
 <template>
   <h1>Monster Battle</h1>
   <game-display
-  :player-health="playerHealth"
-  :monster-health="monsterHealth"
+    :player-health="playerHealth"
+    :monster-health="monsterHealth"
+    :player-move="playerAttacked"
+    :monster-move="monsterAttacked"
   ></game-display>
-  <restart-screen v-if="winner"
-  :winner="winner"
-  @restart="restartGame"
+  <restart-screen
+    v-if="winner"
+    :winner="winner"
+    @restart="restartGame"
   ></restart-screen>
-  <game-controls v-else
-  :has-potion="healthPotion"
-  @reg-atk="playerAtk"
-  @spl-atk="specialAtk"
-  @is-blocking="playerBlock"
-  @use-potion="playerHeal"
+  <game-controls
+    v-else
+    :has-potion="healthPotion"
+    @reg-atk="playerAtk"
+    @spl-atk="specialAtk"
+    @is-blocking="playerBlock"
+    @use-potion="playerHeal"
   ></game-controls>
 </template>
 
@@ -23,6 +27,8 @@ export default {
     return {
       playerHealth: 100,
       monsterHealth: 100,
+      playerAttacked: false,
+      monsterAttacked: false,
       roundCounter: 0,
       healthPotion: true,
       winner: null,
@@ -31,24 +37,27 @@ export default {
   watch: {
     // Once the player or monsters health hits 0 or less, declares the winner
     playerHealth(value) {
-      if(value <= 0) {
+      // Make sure that all values are accounted for.
+      // Ex: if (value === 0) { winner} wont work,
+      // because it wont run the code unless the health falls exactly on 0.
+      if (value <= 0) {
         this.winner = "Monster Won";
       }
     },
     monsterHealth(value) {
-      if(value <= 0) {
+      if (value <= 0) {
         this.winner = "Player Won";
       }
-    }
+    },
   },
   methods: {
     // Reset data and restarts game
-    restartGame(){
-      this.playerHealth = 100,
-      this.monsterHealth = 100,
-      this.roundCounter = 0,
-      this.healthPotion = true,
-      this.winner = null
+    restartGame() {
+      (this.playerHealth = 100),
+        (this.monsterHealth = 100),
+        (this.roundCounter = 0),
+        (this.healthPotion = true),
+        (this.winner = null);
     },
     // Generates a random number between the given parameters
     getRandomRange(min, max) {
@@ -58,6 +67,7 @@ export default {
     playerAtk() {
       const attackPoints = this.getRandomRange(5, 12);
       this.monsterHealth -= attackPoints;
+      this.playerAtkAnimation();
       this.monsterAtk();
     },
     // A Special attack that deals more damage to the monster
@@ -93,10 +103,22 @@ export default {
         blocked
           ? (this.playerHealth -= Math.abs(attackPoints - blocked))
           : (this.playerHealth -= attackPoints);
-        console.log(attackPoints, blocked);
+        this.monsterAtkAnimation();
       }, 1000);
       this.roundCounter++;
     },
+    playerAtkAnimation() {
+      this.playerAttacked = true;
+      setTimeout(()=> {
+        this.playerAttacked = false;
+      }, 300);
+    },
+    monsterAtkAnimation() {
+      this.monsterAttacked = true;
+      setTimeout(()=> {
+        this.monsterAttacked = false;
+      }, 300);
+    }
   },
 };
 </script>
