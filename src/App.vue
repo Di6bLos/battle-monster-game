@@ -136,7 +136,7 @@ export default {
       this.playerAttacked = true;
       setTimeout(() => {
         this.playerAttacked = false;
-        setTimeout(()=> {
+        setTimeout(() => {
           this.monsterAtkAnimation();
         }, 500);
       }, 300);
@@ -149,7 +149,7 @@ export default {
       this.playerBlocked = true;
       setTimeout(() => {
         this.playerBlocked = false;
-        setTimeout(()=> {
+        setTimeout(() => {
           this.monsterAtkAnimation();
         }, 500);
       }, 300);
@@ -162,7 +162,7 @@ export default {
       this.playerBlocked = true;
       setTimeout(() => {
         this.playerBlocked = false;
-        setTimeout(()=> {
+        setTimeout(() => {
           this.monsterAtkAnimation();
         }, 500);
       }, 300);
@@ -173,13 +173,12 @@ export default {
     },
     // Monsters animation gets triggered by the player animations, not the monster attacking
     monsterAtkAnimation() {
-      if(this.monsterHealth > 0) {
-          this.monsterAttacked = true;
-      setTimeout(() => {
-        this.monsterAttacked = false;
-      }, 300);
+      if (this.monsterHealth > 0) {
+        this.monsterAttacked = true;
+        setTimeout(() => {
+          this.monsterAttacked = false;
+        }, 300);
       }
-    
     },
   },
 };
