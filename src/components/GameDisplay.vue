@@ -3,16 +3,14 @@
     <div class="battle-display">
       <div class="player-card card">
         <h2>Player</h2>
-        <div class="char-img" :class="{attacking: playerMove}">
-            <div v-if="playerMove" class="action-icon"></div>
-          <img src="#" alt="player-image" />
+        <div class="char-img" :class="{ attacking: playerMove, 'monster-dmg': playerMove}">
+          <img id="player-image" src="../assets/images/NROL-47_Knight.png" alt="player-image" />
         </div>
       </div>
       <div class="monster-card card">
         <h2>Monster</h2>
-        <div class="char-img" :class="{attacked: monsterMove}">
-            <div v-if="monsterMove" class="action-icon"></div>
-          <img src="#" alt="monster-image" />
+        <div class="char-img" :class="{ attacked: monsterMove, 'player-dmg': playerMove}">
+          <img id="monster-image" src="../assets/images/640px-Troll_Wesnoth.png" alt="monster-image" />
         </div>
       </div>
     </div>
@@ -20,12 +18,11 @@
     <div class="health-meters">
       <div class="health-gauge">
         <div id="player-hp" class="health-bar" :style="playerHpStyle">
-          {{ playerHealth }}
         </div>
       </div>
       <div id="monster-hp" class="health-gauge">
         <div class="health-bar" :style="monsterHpStyle">
-          {{ monsterHealth }}
+          
         </div>
       </div>
     </div>

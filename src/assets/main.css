@@ -6,10 +6,7 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
-  border: 1px solid red;
-}
-button:disabled {
-	background-color: grey;
+  /* border: 1px solid red; */
 }
 html {
   scroll-behavior: smooth;
@@ -20,6 +17,9 @@ body {
   height: 100%;
   overflow-y: auto;
   font-family: "Raleway";
+  padding: 1rem;
+  text-align: center;
+  background-color: rgb(176, 232, 232);
 }
 img,
 picture {
@@ -30,26 +30,73 @@ picture {
 
 h1 {
   text-align: center;
+  margin: 1rem 1rem 2rem;
 }
+.game-body {
+  background-color: whitesmoke;
+  margin: auto;
+  max-width: 780px;
+  border-radius: .5rem;
+  padding: 1rem;
+}
+.health-gauge,
+.game-body,
+.char-img,
+.btn {
+  border: 2px solid black;
+}
+/* GameDisplay */
 .battle-display {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 1rem;
+}
+.card {
+  max-width: 200px;
 }
 .health-meters,
 .health-gauge {
   display: flex;
+  gap: 1rem;
 }
 .health-gauge,
 .health-bar {
   width: 100%;
   text-align: center;
 }
+.health-gauge {
+  background-color: rgb(220, 32, 32);
+  margin: 1rem 0;
+}
 .health-bar {
-  background-color: green;
+  background-color: rgb(16, 167, 16);
+  height: 1rem;
 }
 #monster-hp {
   justify-content: flex-end;
 }
+
+.char-img {
+  z-index: 5;
+  overflow: hidden;
+  height: 200px;
+  margin-top: .5rem;
+  background-color: grey;
+}
+.attacking {
+  position: relative;
+  left: 2rem;
+}
+.attacked {
+  position: relative;
+  right: 2rem;
+}
+.player-dmg {
+  background: rgb(176, 232, 232, 0.5);
+}
+
+
+/* GameControls */
 .game-controls {
   display: flex;
   flex-direction: column;
@@ -58,28 +105,44 @@ h1 {
 .btn-row {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .btn {
-  padding: 1rem 2rem;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: .5rem;
   color: white;
-  background-color: brown;
+  background-color: rgb(47, 47, 140);
+  margin: .5rem 1rem;
 }
-.char-img {
-  width: 200px;
-  height: 200px;
-  background-color: grey;
-}
-.attacking {
-  position: relative;
-  left: 1rem;
-}
-.attacked {
-  position: relative;
-  right: 1rem;
+.btn:hover {
+  background-color: rgb(72, 72, 202);
 }
 
-.action-icon {
-  width: 40px;
-  height: 40px;
-  background-color: yellow;
+.btn:disabled {
+  background-color: darkgray;
+}
+
+
+/* RestartScreen */
+.winner-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+@media screen and (max-width: 480px) {
+  .btn-row {
+    flex-direction: column;
+  }
+  .char-img {
+    height: 150px;
+  }
+  .battle-display,
+  .health-meters {
+    gap: .5rem;
+  }
+
 }
