@@ -2,7 +2,7 @@
   <section class="winner-prompt">
     <h2>Game Over</h2>
     <h3>{{ winner }}</h3>
-    <button class="btn" @click="$emit('restart')">Restart</button>
+    <button class="btn retart-btn" @click="$emit('restart')">Restart</button>
   </section>
 </template>
 

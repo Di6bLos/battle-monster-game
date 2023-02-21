@@ -85,18 +85,40 @@ h1 {
 }
 .attacking {
   position: relative;
-  left: 2rem;
-  animation: player-attacked 300 ;
+  animation: player-attacked 300ms ease-in;
 }
 .attacked {
   position: relative;
-  right: 2rem;
+  animation: monster-attacked 300ms ease-in;
 }
-.player-dmg {
-  background: rgb(176, 232, 232, 0.5);
+@keyframes player-attacked {
+  0% {
+    left: 0;
+  }
+  15% {
+    left: 2rem;
+  }
+  100% {
+    left: 0;
+  }
 }
-
-
+@keyframes monster-attacked {
+  0% {
+    right: 0;
+  }
+  10% {
+    right: 2rem;
+  }
+  20% {
+    right: 1rem;
+  }
+  30% {
+    right: 2rem;
+  }
+  100% {
+    right: 0;
+  }
+}
 /* GameControls */
 .game-controls {
   display: flex;
@@ -133,6 +155,8 @@ h1 {
   gap: 1rem;
 }
 
+
+  /* ================ */
 
 @media screen and (max-width: 480px) {
   .btn-row {

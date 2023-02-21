@@ -171,6 +171,7 @@ export default {
         this.btnDisabled = false;
       }, 1500);
     },
+    // Monsters animation gets triggered by the player animations, not the monster attacking
     monsterAtkAnimation() {
       if(this.monsterHealth > 0) {
           this.monsterAttacked = true;

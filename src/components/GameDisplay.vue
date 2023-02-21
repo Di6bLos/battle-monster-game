@@ -9,8 +9,8 @@
       </div>
       <div class="monster-card card">
         <h2>Monster</h2>
-        <div class="char-img" :class="{ attacked: monsterMove, 'player-dmg': playerMove}">
-          <img id="monster-image" src="../assets/images/640px-Troll_Wesnoth.png" alt="monster-image" />
+        <div id="monster-image" class="char-img" :class="{ attacked: monsterMove, 'player-dmg': playerMove}">
+          <img src="../assets/images/640px-Troll_Wesnoth.png" alt="monster-image" />
         </div>
       </div>
     </div>
