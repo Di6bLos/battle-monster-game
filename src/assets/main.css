@@ -77,11 +77,22 @@ h1 {
 }
 
 .char-img {
-  z-index: 5;
   overflow: hidden;
   height: 200px;
   margin-top: .5rem;
   background-color: grey;
+}
+.monster-dmg {
+  background-color: white;
+}
+.player-dmg {
+  background-color: white;
+}
+.monster-dmg img{
+  opacity: .4;
+}
+.player-dmg img{
+  opacity: .4;
 }
 .attacking {
   position: relative;
@@ -91,6 +102,7 @@ h1 {
   position: relative;
   animation: monster-attacked 300ms ease-in;
 }
+
 @keyframes player-attacked {
   0% {
     left: 0;
