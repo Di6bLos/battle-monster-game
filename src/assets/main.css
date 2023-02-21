@@ -86,6 +86,7 @@ h1 {
 .attacking {
   position: relative;
   left: 2rem;
+  animation: player-attacked 300 ;
 }
 .attacked {
   position: relative;

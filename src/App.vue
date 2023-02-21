@@ -130,7 +130,7 @@ export default {
         this.roundCounter++;
       }
     },
-    // Adds a class to the player or monster for 300ms
+    // Adds a class to the player or monster
     // that will animate the attack sequence.
     playerAtkAnimation() {
       this.playerAttacked = true;
@@ -172,10 +172,13 @@ export default {
       }, 1500);
     },
     monsterAtkAnimation() {
-      this.monsterAttacked = true;
+      if(this.monsterHealth > 0) {
+          this.monsterAttacked = true;
       setTimeout(() => {
         this.monsterAttacked = false;
       }, 300);
+      }
+    
     },
   },
 };
